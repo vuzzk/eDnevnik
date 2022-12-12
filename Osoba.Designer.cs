@@ -38,8 +38,8 @@
             this.labelIme = new System.Windows.Forms.Label();
             this.labelPrezime = new System.Windows.Forms.Label();
             this.labelAdresa = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.labelJMBG = new System.Windows.Forms.Label();
-            this.labelMail = new System.Windows.Forms.Label();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -175,29 +175,29 @@
             this.labelAdresa.TabIndex = 9;
             this.labelAdresa.Text = "Adresa";
             // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.BackColor = System.Drawing.Color.Transparent;
+            this.labelEmail.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmail.ForeColor = System.Drawing.Color.AliceBlue;
+            this.labelEmail.Location = new System.Drawing.Point(123, 218);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(45, 22);
+            this.labelEmail.TabIndex = 10;
+            this.labelEmail.Text = "Mejl";
+            // 
             // labelJMBG
             // 
             this.labelJMBG.AutoSize = true;
             this.labelJMBG.BackColor = System.Drawing.Color.Transparent;
             this.labelJMBG.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelJMBG.ForeColor = System.Drawing.Color.AliceBlue;
-            this.labelJMBG.Location = new System.Drawing.Point(123, 218);
+            this.labelJMBG.Location = new System.Drawing.Point(123, 254);
             this.labelJMBG.Name = "labelJMBG";
-            this.labelJMBG.Size = new System.Drawing.Size(45, 22);
-            this.labelJMBG.TabIndex = 10;
-            this.labelJMBG.Text = "Mejl";
-            // 
-            // labelMail
-            // 
-            this.labelMail.AutoSize = true;
-            this.labelMail.BackColor = System.Drawing.Color.Transparent;
-            this.labelMail.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMail.ForeColor = System.Drawing.Color.AliceBlue;
-            this.labelMail.Location = new System.Drawing.Point(123, 254);
-            this.labelMail.Name = "labelMail";
-            this.labelMail.Size = new System.Drawing.Size(64, 22);
-            this.labelMail.TabIndex = 11;
-            this.labelMail.Text = "JMBG";
+            this.labelJMBG.Size = new System.Drawing.Size(64, 22);
+            this.labelJMBG.TabIndex = 11;
+            this.labelJMBG.Text = "JMBG";
             // 
             // buttonInsert
             // 
@@ -402,6 +402,7 @@
             // comboBoxUloga
             // 
             this.comboBoxUloga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(31)))), ((int)(((byte)(45)))));
+            this.comboBoxUloga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUloga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxUloga.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxUloga.ForeColor = System.Drawing.Color.AliceBlue;
@@ -447,6 +448,7 @@
             // comboBoxSearchBy
             // 
             this.comboBoxSearchBy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(31)))), ((int)(((byte)(45)))));
+            this.comboBoxSearchBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchBy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxSearchBy.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSearchBy.ForeColor = System.Drawing.Color.AliceBlue;
@@ -500,8 +502,8 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonInsert);
-            this.Controls.Add(this.labelMail);
             this.Controls.Add(this.labelJMBG);
+            this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.labelAdresa);
             this.Controls.Add(this.labelPrezime);
             this.Controls.Add(this.labelIme);
@@ -534,8 +536,8 @@
         private System.Windows.Forms.Label labelIme;
         private System.Windows.Forms.Label labelPrezime;
         private System.Windows.Forms.Label labelAdresa;
+        private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelJMBG;
-        private System.Windows.Forms.Label labelMail;
         private System.Windows.Forms.Button buttonInsert;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;

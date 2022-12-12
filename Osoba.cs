@@ -28,6 +28,8 @@ namespace eDnevnik
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Osoba", veza);
             adapter.Fill(tabela);
             Populate();
+
+            comboBoxSearchBy.SelectedIndex = 0;
         }
 
         //Prikaz podataka iz tabele
@@ -49,7 +51,9 @@ namespace eDnevnik
                 textBoxPrezime.Text = tabela.Rows[broj_sloga][2].ToString();
                 textBoxAdresa.Text = tabela.Rows[broj_sloga][3].ToString();
                 textBoxJMBG.Text = tabela.Rows[broj_sloga][4].ToString(); 
-                textBoxMejl.Text = tabela.Rows[broj_sloga][5].ToString(); 
+                textBoxMejl.Text = tabela.Rows[broj_sloga][5].ToString();
+                textBoxPassword.Text = tabela.Rows[broj_sloga][6].ToString();
+                comboBoxUloga.SelectedIndex = Convert.ToInt32(tabela.Rows[broj_sloga][7]);
                 if (broj_sloga == tabela.Rows.Count - 1)
                 {
                     buttonForward.Enabled = false;
@@ -102,7 +106,6 @@ namespace eDnevnik
         //Dugmici za manipulisanje podacima
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            int uloga = comboBoxUloga.SelectedIndex++;
             string naredba = "INSERT INTO osoba VALUES('";
             naredba = naredba + textBoxIme.Text + "','";
             naredba = naredba + textBoxPrezime.Text + "','";
@@ -130,12 +133,48 @@ namespace eDnevnik
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-
+            string naredba = "UPDATE osoba SET ";
+            naredba = naredba + "ime = '" + textBoxIme.Text + "',";
+            naredba = naredba + "prezime = '" + textBoxPrezime.Text + "',";
+            naredba = naredba + "adresa = '" + textBoxAdresa.Text + "',";
+            naredba = naredba + "jmbg = '" + textBoxJMBG.Text + "',";
+            naredba = naredba + "email = '" + textBoxMejl.Text + "',";
+            naredba = naredba + "pass = '" + textBoxPassword.Text + "',";
+            naredba = naredba + "uloga = " + comboBoxUloga.SelectedIndex + " ";
+            naredba = naredba + "WHERE id=" + textBoxID.Text;
+            textBoxCommand.Text = naredba;
+            SqlConnection veza = konekcija.connect();
+            SqlCommand komanda = new SqlCommand(naredba, veza);
+            try
+            {
+                veza.Open();
+                komanda.ExecuteNonQuery();
+                veza.Close();
+            }
+            catch (Exception greska) { MessageBox.Show(greska.GetType().ToString(), "Pretraga", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM osoba", veza);
+            tabela = new DataTable();
+            adapter.Fill(tabela);
+            Populate();
+            labelUspesno.Visible = true;
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-
+            string naredba = "DELETE FROM osoba WHERE id=" + textBoxID.Text;
+            textBoxCommand.Text = naredba;
+            SqlConnection veza = konekcija.connect();
+            SqlCommand komanda = new SqlCommand(naredba, veza);
+            if (broj_sloga == tabela.Rows.Count - 1) broj_sloga--;
+            if (broj_sloga < 0) broj_sloga = 0; 
+            veza.Open();
+            komanda.ExecuteNonQuery();
+            veza.Close();
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM osoba", veza);
+            tabela = new DataTable();
+            adapter.Fill(tabela);
+            Populate();
+            labelUspesno.Visible = true;
         }
 
         //Pretraga podataka
