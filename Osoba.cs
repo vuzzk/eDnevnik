@@ -177,25 +177,26 @@ namespace eDnevnik
             labelUspesno.Visible = true;
         }
 
-        //Pretraga podataka
+        //Pretraga podataka po svim kolonama (ossim lozinke i uloge)
         int katPretrage = 0;
         string s;
         public void Search(string s, int kat)
         {
-            for (int i = 0; i < tabela.Rows.Count; i++)
+            int n = 0;
+            int i = 0;
+            for (i = 0; i < tabela.Rows.Count; i++)
             {
                 if(s == tabela.Rows[i][kat].ToString())
                 {
                     broj_sloga = i;
                     Populate();
-                    break;
                 }
                 else
                 {
-                    MessageBox.Show("Ova osoba ne postoji u bazi!", "Pretraga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
+                    n++;
                 }
             }
+            if (n == i) MessageBox.Show("Ova osoba ne postoji u bazi!", "Pretraga", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
