@@ -62,6 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="konekcija.cs" />
+    <Compile Include="Odeljenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Odeljenje.Designer.cs">
+      <DependentUpon>Odeljenje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Osoba.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Odeljenje.resx">
+      <DependentUpon>Odeljenje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Osoba.resx">
       <DependentUpon>Osoba.cs</DependentUpon>
     </EmbeddedResource>
