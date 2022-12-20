@@ -182,6 +182,7 @@ namespace eDnevnik
             this.buttonDelete.TabIndex = 34;
             this.buttonDelete.Text = "OBRIŠI";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonUpdate
             // 
@@ -199,6 +200,7 @@ namespace eDnevnik
             this.buttonUpdate.TabIndex = 33;
             this.buttonUpdate.Text = "IZMENI";
             this.buttonUpdate.UseVisualStyleBackColor = false;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonInsert
             // 
@@ -216,6 +218,7 @@ namespace eDnevnik
             this.buttonInsert.TabIndex = 32;
             this.buttonInsert.Text = "UBACI";
             this.buttonInsert.UseVisualStyleBackColor = false;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // textBoxSR
             // 
@@ -370,17 +373,6 @@ namespace eDnevnik
             this.comboBoxRazredni.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRazredni.ForeColor = System.Drawing.Color.AliceBlue;
             this.comboBoxRazredni.FormattingEnabled = true;
-            this.comboBoxRazredni.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "Milos Pusic",
-            "Danijela Vujetic",
-            "Valentina Popovic",
-            "Aleksandra Nedic Filipovic"});
             this.comboBoxRazredni.Location = new System.Drawing.Point(220, 215);
             this.comboBoxRazredni.Name = "comboBoxRazredni";
             this.comboBoxRazredni.Size = new System.Drawing.Size(231, 30);

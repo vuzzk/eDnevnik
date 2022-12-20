@@ -35,6 +35,7 @@ namespace eDnevnik
         //Prikaz podataka iz tabele
         private void Populate()
         {
+            int index;
             if (tabela.Rows.Count == 0)
             {
                 textBoxID.Text = "";
@@ -53,7 +54,8 @@ namespace eDnevnik
                 textBoxJMBG.Text = tabela.Rows[broj_sloga][4].ToString(); 
                 textBoxMejl.Text = tabela.Rows[broj_sloga][5].ToString();
                 textBoxPassword.Text = tabela.Rows[broj_sloga][6].ToString();
-                comboBoxUloga.SelectedIndex = Convert.ToInt32(tabela.Rows[broj_sloga][7]);
+                index = Convert.ToInt32(tabela.Rows[broj_sloga][7]) - 1;
+                comboBoxUloga.SelectedIndex = index;
                 if (broj_sloga == tabela.Rows.Count - 1)
                 {
                     buttonForward.Enabled = false;
