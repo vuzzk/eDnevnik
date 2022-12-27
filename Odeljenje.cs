@@ -14,7 +14,7 @@ namespace eDnevnik
     public partial class Odeljenje : Form
     {
         int broj_sloga = 0;
-        DataTable tabela, tabelaNastavnici;
+        DataTable tabelaOdeljenje;
 
         public Odeljenje()
         {
@@ -23,29 +23,40 @@ namespace eDnevnik
 
         private void Odeljenje_Load(object sender, EventArgs e)
         {
-            tabela = new DataTable();
-            tabelaNastavnici = new DataTable();
             SqlConnection veza = konekcija.connect();
-            SqlConnection vezaN = konekcija.connect();
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Odeljenje", veza);
-            adapter.Fill(tabela);
-            SqlDataAdapter adapterN = new SqlDataAdapter("SELECT * FROM Osoba WHERE uloga = 2", vezaN);
-            adapterN.Fill(tabelaNastavnici);
-            Populate();
-
-            //Combobox razredni, svaki put po pokretanju programa dodace se novi nastavnici
-            comboBoxRazredni.Items.Clear();
-            for (int x = 0; x < tabelaNastavnici.Rows.Count; x++)
-            {
-                comboBoxRazredni.Items.Add(tabelaNastavnici.Rows[x][1].ToString() + " " + tabelaNastavnici.Rows[x][2].ToString());
-            }
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM smer", veza);
+            DataTable tabelaSmer = new DataTable();
+            adapter.Fill(tabelaSmer);
+            comboBoxSmer.DataSource = tabelaSmer;
+            comboBoxSmer.ValueMember = "id";
+            comboBoxSmer.DisplayMember = "Naziv";
+            adapter = new SqlDataAdapter("SELECT * FROM odeljenje", veza);
+            tabelaOdeljenje = new DataTable();
+            adapter.Fill(tabelaOdeljenje);
+            textBoxID.Text = tabelaOdeljenje.Rows[broj_sloga][0].ToString();
+            textBoxRazred.Text = tabelaOdeljenje.Rows[broj_sloga][1].ToString();
+            textBoxIndeks.Text = tabelaOdeljenje.Rows[broj_sloga][2].ToString();
+            comboBoxSmer.SelectedValue = (int)tabelaOdeljenje.Rows[broj_sloga][3];
+            adapter = new SqlDataAdapter("SELECT id, ime+' '+prezime AS imeprezime FROM osoba WHERE uloga=2", veza);
+            DataTable tabelaOsoba = new DataTable();
+            adapter.Fill(tabelaOsoba);
+            comboBoxRazredni.DataSource = tabelaOsoba;
+            comboBoxRazredni.DisplayMember = "imeprezime";
+            comboBoxRazredni.ValueMember = "id";
+            comboBoxRazredni.SelectedValue = (int)tabelaOdeljenje.Rows[broj_sloga][4];
+            adapter = new SqlDataAdapter("SELECT * FROM skolska_godina", veza);
+            DataTable tabelaGodina = new DataTable();
+            adapter.Fill(tabelaGodina);
+            comboBoxGodina.DataSource = tabelaGodina;
+            comboBoxGodina.DisplayMember = "naziv";
+            comboBoxGodina.ValueMember = "id";
+            comboBoxGodina.SelectedValue = (int)tabelaOdeljenje.Rows[broj_sloga][5];
         }
 
         //Prikaz podataka iz tabele
-        private void Populate()
+        private void Populate(int broj_sloga)
         {
-            int index;
-            if (tabela.Rows.Count == 0)
+            if (tabelaOdeljenje.Rows.Count == 0)
             {
                 textBoxID.Text = "";
                 textBoxRazred.Text = "";
@@ -56,18 +67,13 @@ namespace eDnevnik
             }
             else
             {
-                textBoxID.Text = tabela.Rows[broj_sloga][0].ToString();
-                textBoxRazred.Text = tabela.Rows[broj_sloga][1].ToString();
-                textBoxIndeks.Text = tabela.Rows[broj_sloga][2].ToString();
-                index = Convert.ToInt32(tabela.Rows[broj_sloga][3]) - 1;
-                comboBoxSmer.SelectedIndex = index;
-                //Nije gotovo!!!
-                //index = Convert.ToInt32(tabela.Rows[broj_sloga][4]) - 1;
-                //index = Convert.ToInt32(tabelaNastavnici.Rows[)
-                //comboBoxRazredni.SelectedIndex = index;
-                index = Convert.ToInt32(tabela.Rows[broj_sloga][5]) - 1;
-                comboBoxGodina.SelectedIndex = index;
-                if (broj_sloga == tabela.Rows.Count - 1)
+                textBoxID.Text = tabelaOdeljenje.Rows[broj_sloga][0].ToString();
+                textBoxRazred.Text = tabelaOdeljenje.Rows[broj_sloga][1].ToString();
+                textBoxIndeks.Text = tabelaOdeljenje.Rows[broj_sloga][2].ToString();
+                comboBoxRazredni.SelectedValue = (int)tabelaOdeljenje.Rows[broj_sloga][4];
+                comboBoxSmer.SelectedValue = (int)tabelaOdeljenje.Rows[broj_sloga][3];
+                comboBoxGodina.SelectedValue = (int)tabelaOdeljenje.Rows[broj_sloga][5];
+                if (broj_sloga == tabelaOdeljenje.Rows.Count - 1)
                 {
                     buttonForward.Enabled = false;
                     buttonEnd.Enabled = false;
@@ -94,37 +100,54 @@ namespace eDnevnik
         //Dugmici za navigaciju po tabeli
         private void buttonBegin_Click(object sender, EventArgs e)
         {
+            labelUspesno.Visible = false;
             broj_sloga = 0;
-            Populate();
+            Populate(broj_sloga);
         }
 
         private void buttonBackward_Click(object sender, EventArgs e)
         {
+            labelUspesno.Visible = false;
             broj_sloga--;
-            Populate();
+            Populate(broj_sloga);
         }
 
         private void buttonForward_Click(object sender, EventArgs e)
         {
+            labelUspesno.Visible = false;
             broj_sloga++;
-            Populate();
+            Populate(broj_sloga);
         }
 
         private void buttonEnd_Click(object sender, EventArgs e)
         {
-            broj_sloga = tabela.Rows.Count - 1;
-            Populate();
+            labelUspesno.Visible = false;
+            broj_sloga = tabelaOdeljenje.Rows.Count - 1;
+            Populate(broj_sloga);
         }
 
         //Dugmici za manipulisanje podacima, nisu gotovi
         private void buttonInsert_Click(object sender, EventArgs e)
         {
+            labelUspesno.Visible = false;
             string naredba = "INSERT INTO odeljenje VALUES('";
             naredba = naredba + "razred = '" + textBoxRazred.Text + "',";
             naredba = naredba + "indeks = '" + textBoxIndeks.Text + "',";
-            naredba = naredba + "smer_id = '" + comboBoxSmer.SelectedItem.ToString() + "',";
-            naredba = naredba + "razredni_id = '" + comboBoxRazredni.SelectedItem.ToString() + "',";
-            naredba = naredba + "godina_id = '" + comboBoxGodina.SelectedItem.ToString() + "')";
+            SqlConnection vezaP = konekcija.connect();
+            SqlDataAdapter adapterP = new SqlDataAdapter("SELECT * FROM smer WHERE naziv='"+ comboBoxSmer.SelectedItem.ToString() +"'", vezaP);
+            DataTable tabelaSmerP = new DataTable();
+            adapterP.Fill(tabelaSmerP);
+            naredba = naredba + "smer_id = " + tabelaSmerP.Rows[broj_sloga][0].ToString() + ",";
+            SqlConnection vezaP2 = konekcija.connect();
+            SqlDataAdapter adapterP2 = new SqlDataAdapter("SELECT * FROM osoba WHERE ime+' '+prezime='" + comboBoxRazredni.SelectedItem.ToString() + "'", vezaP2);
+            DataTable tabelaRazredniP = new DataTable();
+            adapterP2.Fill(tabelaRazredniP);
+            naredba = naredba + "razredni_id = " + tabelaRazredniP.Rows[broj_sloga][0].ToString() + ",";
+            SqlConnection vezaP3 = konekcija.connect();
+            SqlDataAdapter adapterP3 = new SqlDataAdapter("SELECT * FROM skolska_godina WHERE naziv='" + comboBoxGodina.SelectedItem.ToString() + "'", vezaP3);
+            DataTable tabelaGodinaP = new DataTable();
+            adapterP3.Fill(tabelaGodinaP);
+            naredba = naredba + "godina_id = " + tabelaGodinaP.Rows[broj_sloga][0].ToString() + ")";
             textBoxCommand.Text = naredba;
             SqlConnection veza = konekcija.connect();
             SqlCommand komanda = new SqlCommand(naredba, veza);
@@ -136,20 +159,21 @@ namespace eDnevnik
             }
             catch (Exception greska) { MessageBox.Show(greska.GetType().ToString(), "Greska!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM odeljenje", veza);
-            tabela = new DataTable();
-            adapter.Fill(tabela);
-            Populate();
+            tabelaOdeljenje = new DataTable();
+            adapter.Fill(tabelaOdeljenje);
+            Populate(broj_sloga);
             labelUspesno.Visible = true;
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            labelUspesno.Visible = false;
             string naredba = "UPDATE odeljenje SET ";
             naredba = naredba + "razred = '" + textBoxRazred.Text + "',";
             naredba = naredba + "indeks = '" + textBoxIndeks.Text + "',";
-            naredba = naredba + "smer_id = '" + comboBoxSmer.SelectedItem.ToString() + "',"; 
-            naredba = naredba + "razredni_id = '" + comboBoxRazredni.SelectedItem.ToString() + "',";
-            naredba = naredba + "godina_id = '" + comboBoxGodina.SelectedItem.ToString() + "' ";
+            naredba = naredba + "smer_id = '" + comboBoxSmer.ValueMember.ToString() + "',";
+            naredba = naredba + "razredni_id = '" + comboBoxRazredni.ValueMember.ToString() + "',";
+            naredba = naredba + "godina_id = '" + comboBoxGodina.ValueMember.ToString() + "' ";
             naredba = naredba + "WHERE id=" + textBoxID.Text;
             textBoxCommand.Text = naredba;
             SqlConnection veza = konekcija.connect();
@@ -162,42 +186,43 @@ namespace eDnevnik
             }
             catch (Exception greska) { MessageBox.Show(greska.GetType().ToString(), "Greska!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM odeljenje", veza);
-            tabela = new DataTable();
-            adapter.Fill(tabela);
-            Populate();
+            tabelaOdeljenje = new DataTable();
+            adapter.Fill(tabelaOdeljenje);
+            Populate(broj_sloga);
             labelUspesno.Visible = true;
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            labelUspesno.Visible = false;
             string naredba = "DELETE FROM odeljenje WHERE id=" + textBoxID.Text;
             textBoxCommand.Text = naredba;
             SqlConnection veza = konekcija.connect();
             SqlCommand komanda = new SqlCommand(naredba, veza);
-            if (broj_sloga == tabela.Rows.Count - 1) broj_sloga--;
+            if (broj_sloga == tabelaOdeljenje.Rows.Count - 1) broj_sloga--;
             if (broj_sloga < 0) broj_sloga = 0;
             veza.Open();
             komanda.ExecuteNonQuery();
             veza.Close();
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM odeljenje", veza);
-            tabela = new DataTable();
-            adapter.Fill(tabela);
-            Populate();
+            tabelaOdeljenje = new DataTable();
+            adapter.Fill(tabelaOdeljenje);
+            Populate(broj_sloga);
             labelUspesno.Visible = true;
         }
 
         //Pretraga odeljenja
-        string p,q,s;
+        string p, q, s;
         public void Search(string p, string q)
         {
             int n = 0;
             int i = 0;
-            for (i = 0; i < tabela.Rows.Count; i++)
+            for (i = 0; i < tabelaOdeljenje.Rows.Count; i++)
             {
-                if (p == tabela.Rows[i][1].ToString() && q == tabela.Rows[i][2].ToString())
+                if (p == tabelaOdeljenje.Rows[i][1].ToString() && q == tabelaOdeljenje.Rows[i][2].ToString())
                 {
                     broj_sloga = i;
-                    Populate();
+                    Populate(broj_sloga);
                 }
                 else
                 {
@@ -210,12 +235,12 @@ namespace eDnevnik
         {
             int n = 0;
             int i = 0;
-            for (i = 0; i < tabela.Rows.Count; i++)
+            for (i = 0; i < tabelaOdeljenje.Rows.Count; i++)
             {
-                if (s == tabela.Rows[i][0].ToString())
+                if (s == tabelaOdeljenje.Rows[i][0].ToString())
                 {
                     broj_sloga = i;
-                    Populate();
+                    Populate(broj_sloga);
                 }
                 else
                 {

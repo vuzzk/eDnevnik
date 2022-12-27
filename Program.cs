@@ -16,7 +16,7 @@ namespace eDnevnik
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Odeljenje());
+            Application.Run(new Glavna());
         }
     }
 }

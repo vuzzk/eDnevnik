@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Glavna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Glavna.Designer.cs">
+      <DependentUpon>Glavna.cs</DependentUpon>
+    </Compile>
     <Compile Include="konekcija.cs" />
     <Compile Include="Odeljenje.cs">
       <SubType>Form</SubType>
@@ -76,6 +82,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sifarnik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnik.Designer.cs">
+      <DependentUpon>Sifarnik.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Glavna.resx">
+      <DependentUpon>Glavna.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Odeljenje.resx">
       <DependentUpon>Odeljenje.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +107,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Sifarnik.resx">
+      <DependentUpon>Sifarnik.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
