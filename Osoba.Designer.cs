@@ -56,7 +56,6 @@
             this.comboBoxUloga = new System.Windows.Forms.ComboBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
-            this.labelUspesno = new System.Windows.Forms.Label();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -447,18 +446,6 @@
             this.comboBoxSearchBy.TabIndex = 30;
             this.comboBoxSearchBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchBy_SelectedIndexChanged);
             // 
-            // labelUspesno
-            // 
-            this.labelUspesno.AutoSize = true;
-            this.labelUspesno.BackColor = System.Drawing.Color.Transparent;
-            this.labelUspesno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(181)))), ((int)(((byte)(97)))));
-            this.labelUspesno.Location = new System.Drawing.Point(498, 320);
-            this.labelUspesno.Name = "labelUspesno";
-            this.labelUspesno.Size = new System.Drawing.Size(133, 13);
-            this.labelUspesno.TabIndex = 31;
-            this.labelUspesno.Text = "Naredba uspešno izvršena";
-            this.labelUspesno.Visible = false;
-            // 
             // buttonSearch
             // 
             this.buttonSearch.BackColor = System.Drawing.Color.Transparent;
@@ -484,7 +471,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(47)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(800, 514);
-            this.Controls.Add(this.labelUspesno);
             this.Controls.Add(this.comboBoxSearchBy);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonSearch);
@@ -555,7 +541,6 @@
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.ComboBox comboBoxSearchBy;
-        private System.Windows.Forms.Label labelUspesno;
     }
 }
 

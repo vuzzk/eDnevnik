@@ -130,7 +130,6 @@ namespace eDnevnik
             tabela = new DataTable();
             adapter.Fill(tabela);
             Populate();
-            labelUspesno.Visible = true;
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -158,7 +157,6 @@ namespace eDnevnik
             tabela = new DataTable();
             adapter.Fill(tabela);
             Populate();
-            labelUspesno.Visible = true;
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -176,7 +174,6 @@ namespace eDnevnik
             tabela = new DataTable();
             adapter.Fill(tabela);
             Populate();
-            labelUspesno.Visible = true;
         }
 
         //Pretraga podataka po svim kolonama (ossim lozinke i uloge)

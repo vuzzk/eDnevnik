@@ -38,7 +38,7 @@ namespace eDnevnik
             if (menjano != null)
             {
                 adapter.Update(menjano);
-                this.Close();
+                //this.Close();
             }
         }
 

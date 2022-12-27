@@ -29,7 +29,6 @@ namespace eDnevnik
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelUspesno = new System.Windows.Forms.Label();
             this.labelNaredba = new System.Windows.Forms.Label();
             this.buttonEnd = new System.Windows.Forms.Button();
             this.buttonForward = new System.Windows.Forms.Button();
@@ -60,18 +59,6 @@ namespace eDnevnik
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxSearchID = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // labelUspesno
-            // 
-            this.labelUspesno.AutoSize = true;
-            this.labelUspesno.BackColor = System.Drawing.Color.Transparent;
-            this.labelUspesno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(181)))), ((int)(((byte)(97)))));
-            this.labelUspesno.Location = new System.Drawing.Point(498, 320);
-            this.labelUspesno.Name = "labelUspesno";
-            this.labelUspesno.Size = new System.Drawing.Size(133, 13);
-            this.labelUspesno.TabIndex = 41;
-            this.labelUspesno.Text = "Naredba uspešno izvršena";
-            this.labelUspesno.Visible = false;
             // 
             // labelNaredba
             // 
@@ -502,7 +489,6 @@ namespace eDnevnik
             this.Controls.Add(this.textBoxSR);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.buttonHelp);
-            this.Controls.Add(this.labelUspesno);
             this.Controls.Add(this.labelNaredba);
             this.Controls.Add(this.buttonEnd);
             this.Controls.Add(this.buttonForward);
@@ -523,8 +509,6 @@ namespace eDnevnik
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelUspesno;
         private System.Windows.Forms.Label labelNaredba;
         private System.Windows.Forms.Button buttonEnd;
         private System.Windows.Forms.Button buttonForward;
