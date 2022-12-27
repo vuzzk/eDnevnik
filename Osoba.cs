@@ -115,7 +115,9 @@ namespace eDnevnik
             naredba = naredba + textBoxJMBG.Text + "','";
             naredba = naredba + textBoxMejl.Text + "','";
             naredba = naredba + textBoxPassword.Text + "',";
-            naredba = naredba + comboBoxUloga.SelectedIndex + ")";
+            int n = comboBoxUloga.SelectedIndex++;
+            n++;
+            naredba = naredba + n + ")";
             textBoxCommand.Text = naredba;
             SqlConnection veza = konekcija.connect();
             SqlCommand komanda = new SqlCommand(naredba, veza);
@@ -141,7 +143,9 @@ namespace eDnevnik
             naredba = naredba + "jmbg = '" + textBoxJMBG.Text + "',";
             naredba = naredba + "email = '" + textBoxMejl.Text + "',";
             naredba = naredba + "pass = '" + textBoxPassword.Text + "',";
-            naredba = naredba + "uloga = " + comboBoxUloga.SelectedIndex + " ";
+            int n = comboBoxUloga.SelectedIndex;
+            n++;
+            naredba = naredba + "uloga = " + n + " ";
             naredba = naredba + "WHERE id=" + textBoxID.Text;
             textBoxCommand.Text = naredba;
             SqlConnection veza = konekcija.connect();
