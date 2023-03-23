@@ -68,6 +68,12 @@
       <DependentUpon>Glavna.cs</DependentUpon>
     </Compile>
     <Compile Include="konekcija.cs" />
+    <Compile Include="Ocena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ocena.Designer.cs">
+      <DependentUpon>Ocena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Odeljenje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <EmbeddedResource Include="Glavna.resx">
       <DependentUpon>Glavna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ocena.resx">
+      <DependentUpon>Ocena.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Odeljenje.resx">
       <DependentUpon>Odeljenje.cs</DependentUpon>
