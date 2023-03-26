@@ -31,8 +31,8 @@ namespace eDnevnik
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.šifarniciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.osobaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.odeljenjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.osobaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.školskaGodinaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.podaciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,14 +73,6 @@ namespace eDnevnik
             this.šifarniciToolStripMenuItem.Size = new System.Drawing.Size(79, 23);
             this.šifarniciToolStripMenuItem.Text = "Šifarnici";
             // 
-            // osobaToolStripMenuItem
-            // 
-            this.osobaToolStripMenuItem.BackColor = System.Drawing.Color.White;
-            this.osobaToolStripMenuItem.Name = "osobaToolStripMenuItem";
-            this.osobaToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
-            this.osobaToolStripMenuItem.Text = "Osoba";
-            this.osobaToolStripMenuItem.Click += new System.EventHandler(this.osobaToolStripMenuItem_Click);
-            // 
             // odeljenjeToolStripMenuItem
             // 
             this.odeljenjeToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -88,6 +80,14 @@ namespace eDnevnik
             this.odeljenjeToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
             this.odeljenjeToolStripMenuItem.Text = "Odeljenje";
             this.odeljenjeToolStripMenuItem.Click += new System.EventHandler(this.odeljenjeToolStripMenuItem_Click);
+            // 
+            // osobaToolStripMenuItem
+            // 
+            this.osobaToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            this.osobaToolStripMenuItem.Name = "osobaToolStripMenuItem";
+            this.osobaToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.osobaToolStripMenuItem.Text = "Osoba";
+            this.osobaToolStripMenuItem.Click += new System.EventHandler(this.osobaToolStripMenuItem_Click);
             // 
             // smerToolStripMenuItem
             // 
@@ -125,6 +125,7 @@ namespace eDnevnik
             this.oCeneToolStripMenuItem.Name = "oCeneToolStripMenuItem";
             this.oCeneToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.oCeneToolStripMenuItem.Text = "Ocene";
+            this.oCeneToolStripMenuItem.Click += new System.EventHandler(this.oCeneToolStripMenuItem_Click);
             // 
             // izveštajiToolStripMenuItem
             // 

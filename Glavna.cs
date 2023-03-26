@@ -45,5 +45,11 @@ namespace eDnevnik
             Sifarnik nova = new Sifarnik("skolska_godina");
             nova.Show();
         }
+
+        private void oCeneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ocena nova = new Ocena();
+            nova.Show();
+        }
     }
 }
